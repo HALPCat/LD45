@@ -10,13 +10,14 @@ public class FaceCamera : MonoBehaviour {
     public SpriteRenderer spriteRenderer;
     public RacerScript racerScript;
     public ParticleSystem ps;
+    public bool isPlayer;
 
     public enum SpriteAngle
     {
-        front = 0,
-        right = 1,
-        left = 2,
-        behind = 3
+        N = 0,
+        E = 1,
+        S = 2,
+        W = 3
     }
     public SpriteAngle spriteAngle;
 
@@ -26,6 +27,14 @@ public class FaceCamera : MonoBehaviour {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         racerScript = transform.parent.GetComponent<RacerScript>();
+
+        if(!GetComponentInParent<PlayerControls>())
+        {
+            isPlayer = false;
+        }else
+        {
+            isPlayer = true;
+        }
     }
 
     // Update is called once per frame
@@ -35,33 +44,59 @@ public class FaceCamera : MonoBehaviour {
         transform.rotation = target.rotation;
 
 
-        if(debug)
+        Vector3 localForward;
+        if(!isPlayer)
         {
-            Debug.Log(angleToCamera);
+            localForward = Camera.main.transform.rotation * transform.parent.forward;
+        }else
+        {
+            localForward = Vector3.forward;
         }
+        animator.SetFloat("Horizontal", localForward.x);
+        animator.SetFloat("Vertical", localForward.z);
 
-        if(angleToCamera > 45 & angleToCamera < 135)
+        if(animator.GetFloat("Horizontal") > 0)
         {
-            spriteAngle = SpriteAngle.left;
-        }else if(angleToCamera < -45 & angleToCamera > -135)
-        {
-            spriteAngle = SpriteAngle.right;
-        }
-        else if(angleToCamera >= 135 | angleToCamera <= -135)
-        {
-            spriteAngle = SpriteAngle.front;
-        }
-        else{
-            spriteAngle = SpriteAngle.behind;
-        }
-
-        if(spriteAngle == SpriteAngle.left){
             spriteRenderer.flipX = true;
         }else{
             spriteRenderer.flipX = false;
         }
 
-        animator.SetInteger("SpriteAngle", (int)spriteAngle);
+        if(debug)
+        {
+            Debug.Log(Vector3.Dot(transform.parent.forward, Camera.main.transform.forward));
+        }
+
+        /*
+        //Left side
+        if(angleToCamera > 45 & angleToCamera < 135)
+        {
+            spriteAngle = SpriteAngle.W;
+        }
+        //Right side
+        else if(angleToCamera < -45 & angleToCamera > -135)
+        {
+            spriteAngle = SpriteAngle.E;
+        }
+        //Forward
+        else if(angleToCamera >= 135 | angleToCamera <= -135)
+        {
+            spriteAngle = SpriteAngle.S;
+        }
+        //Behind
+        else{
+            spriteAngle = SpriteAngle.N;
+        }
+
+        if(spriteAngle == SpriteAngle.W){
+            spriteRenderer.flipX = true;
+        }else{
+            spriteRenderer.flipX = false;
+        }
+
+        */
+
+        //animator.SetInteger("SpriteAngle", (int)spriteAngle);
         animator.speed = racerScript.speed;
     }
 
