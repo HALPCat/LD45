@@ -8,6 +8,8 @@ public class FaceCamera : MonoBehaviour {
     public bool debug;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public RacerScript racerScript;
+    public ParticleSystem ps;
 
     public enum SpriteAngle
     {
@@ -23,6 +25,7 @@ public class FaceCamera : MonoBehaviour {
         target = Camera.main.transform;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        racerScript = transform.parent.GetComponent<RacerScript>();
     }
 
     // Update is called once per frame
@@ -57,7 +60,14 @@ public class FaceCamera : MonoBehaviour {
         }else{
             spriteRenderer.flipX = false;
         }
-        
+
         animator.SetInteger("SpriteAngle", (int)spriteAngle);
+        animator.speed = racerScript.speed;
+    }
+
+    public void Kick()
+    {
+        //ps.Play();
+        Debug.Log("kick");
     }
 }
