@@ -6,6 +6,8 @@ public class RacerScript : MonoBehaviour {
     public float speed;
     public float maxSpeed;
     public float accelerationSpeed;
+
+    public float rotationSpeed;
     public int points;
     public int parts;
 
@@ -25,7 +27,14 @@ public class RacerScript : MonoBehaviour {
         }
     }
 
+    public void TurnRight() {
+        transform.Rotate(0, rotationSpeed*Time.deltaTime, 0);
+    }
+
+    public void TurnLeft() {
+        transform.Rotate(0, -rotationSpeed*Time.deltaTime, 0);
+    }
     public void Update() {
-        transform.Translate(transform.forward*Time.deltaTime*speed);
+        transform.Translate(transform.forward*Time.deltaTime*speed , Space.World);
     }
 }

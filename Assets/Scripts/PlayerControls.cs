@@ -17,5 +17,11 @@ public class PlayerControls : MonoBehaviour {
         } else {
             racerScript.Deaccelerate();
         }
+
+        if (Input.GetAxisRaw("Horizontal") == 1) {
+            racerScript.TurnRight();
+        } else if (Input.GetAxisRaw("Horizontal") == -1) {
+            racerScript.TurnLeft();
+        }
     }
 }
