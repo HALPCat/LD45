@@ -9,25 +9,23 @@ public class RacerScript : MonoBehaviour {
     public int points;
     public int parts;
 
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
-
     public void Accelerate() {
         if (speed < maxSpeed) {
             speed += accelerationSpeed * Time.deltaTime;
+        } else if (speed > maxSpeed) {
+            speed = maxSpeed;
         }
     }
 
     public void Deaccelerate() {
         if (speed > 0) {
             speed -= accelerationSpeed * Time.deltaTime;
+        } else if (speed < 0) {
+            speed = 0;
         }
     }
 
-    // Update is called once per frame
-    void Update() {
-        
+    public void Update() {
+        transform.Translate(transform.forward*Time.deltaTime*speed);
     }
 }
