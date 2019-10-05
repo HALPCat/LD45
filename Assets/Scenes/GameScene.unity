@@ -532,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   maxSpeed: 1
-  accelerationSpeed: 0
+  accelerationSpeed: 0.5
+  rotationSpeed: 100
   points: 0
   parts: 0
