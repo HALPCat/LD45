@@ -101,14 +101,44 @@ public class RacerScript : MonoBehaviour {
             canFinish = false;
             if(points >= 3)
             {
+                points = 3;
+                maxSpeed = 4;
                 kartMode = true;
                 GetComponentInChildren<Animator>().SetBool("KartMode", true);
+
+                foreach(SpriteRenderer rend in GetComponentsInChildren<SpriteRenderer>())
+                {
+                    if(!rend.name.Contains("Player"))
+                    {
+                        rend.enabled = false;
+                    }
+                }
+            }else{
+                maxSpeed = maxSpeed / 1.5f;
+                speed = 0;
+                if(GetComponentInChildren<FaceCamera>().isPlayer)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
+                foreach(SpriteRenderer rend in GetComponentsInChildren<SpriteRenderer>())
+                {
+                    if(rend.name.Equals("Part1"))
+                    {
+                        if(points == 1){
+                            rend.enabled = true;
+                        }
+                    }else if(rend.name.Equals("Part2")){
+                        if(points == 2){
+                            rend.enabled = true;
+                        }
+                    }
+                }
             }
         }
         if(other.gameObject.layer == playerLayer)
         {
             Debug.Log("Collision");
-            if(kartMode)
+            if(kartMode & other.gameObject.GetComponentInChildren<RacerScript>() != this)
             {
                 other.gameObject.GetComponentInParent<RacerScript>().Die();
             }
