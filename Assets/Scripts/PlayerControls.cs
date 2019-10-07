@@ -12,9 +12,13 @@ public class PlayerControls : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetAxisRaw("Jump") > 0) {
+        if (Input.GetAxisRaw("Vertical") == 1) {
             racerScript.Accelerate();
         } else {
+            racerScript.Deaccelerate();
+        }
+
+        if (Input.GetAxisRaw("Vertical") == -1) {
             racerScript.Deaccelerate();
         }
 
