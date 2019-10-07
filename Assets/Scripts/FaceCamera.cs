@@ -11,6 +11,7 @@ public class FaceCamera : MonoBehaviour {
     public RacerScript racerScript;
     public ParticleSystem ps;
     public bool isPlayer;
+    public AudioSource audioSource;
 
     public Vector3 localForward;
 
@@ -25,6 +26,7 @@ public class FaceCamera : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        audioSource = GetComponent<AudioSource>();
         target = Camera.main.transform;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -110,7 +112,7 @@ public class FaceCamera : MonoBehaviour {
 
     public void Kick()
     {
-        //ps.Play();
+        audioSource.Play();
         Debug.Log("kick");
     }
 }

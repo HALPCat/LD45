@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        Camera.main.GetComponent<AudioSource>().Play();
         scoreCanvas.enabled = true;
         startButton.SetActive(false);
         dropDown.SetActive(false);
