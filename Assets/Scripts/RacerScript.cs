@@ -6,6 +6,7 @@ public class RacerScript : MonoBehaviour {
     public float speed;
     public float maxSpeed;
     public float accelerationSpeed;
+    public float deAccelerationSpeed;
 
     public float rotationSpeed;
     public int points;
@@ -14,16 +15,18 @@ public class RacerScript : MonoBehaviour {
     public void Accelerate() {
         if (speed < maxSpeed) {
             speed += accelerationSpeed * Time.deltaTime;
-        } else if (speed > maxSpeed) {
-            speed = maxSpeed;
+            if (speed > maxSpeed) {
+                speed = maxSpeed;
+            }
         }
     }
 
     public void Deaccelerate() {
         if (speed > 0) {
-            speed -= accelerationSpeed * Time.deltaTime;
-        } else if (speed < 0) {
-            speed = 0;
+            speed -= deAccelerationSpeed * Time.deltaTime;
+            if (speed < 0) {
+                speed = 0;
+            }
         }
     }
 
@@ -36,5 +39,6 @@ public class RacerScript : MonoBehaviour {
     }
     public void Update() {
         transform.Translate(transform.forward*Time.deltaTime*speed , Space.World);
+        Debug.Log(speed);
     }
 }
