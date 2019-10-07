@@ -14,7 +14,10 @@ public class RacerScript : MonoBehaviour {
 
     public CharacterController characterController;
 
+    private int raceLineLayer;
+
     void Start() {
+        raceLineLayer = LayerMask.NameToLayer("RaceLineFinish");
         characterController = GetComponent<CharacterController>();
     }
 
@@ -32,6 +35,16 @@ public class RacerScript : MonoBehaviour {
             speed -= deAccelerationSpeed * Time.deltaTime;
             if (speed < 0) {
                 speed = 0;
+            }
+        }
+    }
+
+    public void DeaccelerateUntil(float minimumSpeed)
+    {
+        if (speed > minimumSpeed) {
+            speed -= deAccelerationSpeed * Time.deltaTime;
+            if (speed < minimumSpeed) {
+                speed = minimumSpeed;
             }
         }
     }
@@ -60,6 +73,17 @@ public class RacerScript : MonoBehaviour {
         }
         else{
             transform.Translate(transform.forward*Time.deltaTime*speed , Space.World);
+        }
+
+        Vector3 newPos = new Vector3(transform.position.x, 0, transform.position.z);
+        transform.position = newPos;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == raceLineLayer)
+        {
+            points++;
         }
     }
 }

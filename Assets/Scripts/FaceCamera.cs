@@ -12,6 +12,8 @@ public class FaceCamera : MonoBehaviour {
     public ParticleSystem ps;
     public bool isPlayer;
 
+    public Vector3 localForward;
+
     public enum SpriteAngle
     {
         N = 0,
@@ -49,7 +51,6 @@ public class FaceCamera : MonoBehaviour {
         transform.rotation = target.rotation;
 
 
-        Vector3 localForward;
         if(!isPlayer)
         {
             localForward = Camera.main.transform.rotation * transform.parent.forward;
@@ -60,7 +61,7 @@ public class FaceCamera : MonoBehaviour {
         animator.SetFloat("Horizontal", localForward.x);
         animator.SetFloat("Vertical", localForward.z);
 
-        if(animator.GetFloat("Horizontal") > 0)
+        if(animator.GetFloat("Horizontal") >= 0)
         {
             spriteRenderer.flipX = true;
         }else{

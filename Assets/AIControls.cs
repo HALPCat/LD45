@@ -13,7 +13,7 @@ public class AIControls : MonoBehaviour
     void Start()
     {
         racerScript = GetComponent<RacerScript>();
-        CanMove = true;
+        //CanMove = true;
         nextSubWayPoint = GetRandomSubWayPoint(nextWayPoint);
     }
 
@@ -28,7 +28,13 @@ public class AIControls : MonoBehaviour
 
     void Move()
     {
-        racerScript.Accelerate();
+        if(Vector3.Distance(transform.position, nextSubWayPoint) > 1f)
+        {
+            racerScript.Accelerate();
+        }
+        else{
+            racerScript.DeaccelerateUntil(.25f);
+        }
         racerScript.TurnTowards(nextSubWayPoint);
         if(Vector3.Distance(transform.position, nextSubWayPoint) <= 0.25f)
         {
@@ -48,5 +54,7 @@ public class AIControls : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(nextSubWayPoint, 0.25f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 1f);
     }
 }
