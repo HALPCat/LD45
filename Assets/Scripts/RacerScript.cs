@@ -10,7 +10,7 @@ public class RacerScript : MonoBehaviour {
 
     public float rotationSpeed;
     public int points;
-    public int parts;
+    public bool kartMode = false;
     public bool canFinish = false;
 
     public CharacterController characterController;
@@ -92,6 +92,11 @@ public class RacerScript : MonoBehaviour {
         {
             points++;
             canFinish = false;
+            if(points >= 3)
+            {
+                kartMode = true;
+                GetComponentInChildren<Animator>().SetBool("KartMode", true);
+            }
         }
     }
 }

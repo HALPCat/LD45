@@ -12,6 +12,7 @@ public class FaceCamera : MonoBehaviour {
     public ParticleSystem ps;
     public bool isPlayer;
     public AudioSource audioSource;
+    public AudioClip carSound;
 
     public Vector3 localForward;
 
@@ -112,7 +113,13 @@ public class FaceCamera : MonoBehaviour {
 
     public void Kick()
     {
-        audioSource.Play();
-        Debug.Log("kick");
+        if(!racerScript.kartMode){
+            audioSource.PlayOneShot(audioSource.clip);
+        }else
+        {
+            audioSource.volume = .25f;
+            audioSource.clip = carSound;
+            audioSource.PlayOneShot(carSound);
+        }
     }
 }

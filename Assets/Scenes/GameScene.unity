@@ -233,7 +233,7 @@ MonoBehaviour:
   deAccelerationSpeed: 1
   rotationSpeed: 100
   points: 0
-  parts: 0
+  kartMode: 0
   canFinish: 0
   characterController: {fileID: 0}
 --- !u!4 &80064587
@@ -811,6 +811,7 @@ MonoBehaviour:
   ps: {fileID: 0}
   isPlayer: 0
   audioSource: {fileID: 0}
+  carSound: {fileID: 8300000, guid: cc6d4865d56e36740bd52419f5d2470d, type: 3}
   localForward: {x: 0, y: 0, z: 0}
   spriteAngle: 0
 --- !u!95 &371813478
@@ -894,16 +895,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4406980adfc3c5f40ae6890a3e5d73ab, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 128
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 4
+  MinDistance: 1
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -938,7 +939,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.727
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1290,7 +1291,7 @@ MonoBehaviour:
   deAccelerationSpeed: 1
   rotationSpeed: 100
   points: 0
-  parts: 0
+  kartMode: 0
   canFinish: 0
   characterController: {fileID: 0}
 --- !u!4 &439845270
@@ -1904,7 +1905,7 @@ MonoBehaviour:
   deAccelerationSpeed: 1
   rotationSpeed: 100
   points: 0
-  parts: 0
+  kartMode: 0
   canFinish: 0
   characterController: {fileID: 0}
 --- !u!4 &788693555
@@ -2906,6 +2907,7 @@ MonoBehaviour:
   ps: {fileID: 0}
   isPlayer: 0
   audioSource: {fileID: 0}
+  carSound: {fileID: 8300000, guid: cc6d4865d56e36740bd52419f5d2470d, type: 3}
   localForward: {x: 0, y: 0, z: 0}
   spriteAngle: 0
 --- !u!95 &1164926743
@@ -2989,16 +2991,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4406980adfc3c5f40ae6890a3e5d73ab, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 128
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 4
+  MinDistance: 1
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3033,7 +3035,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.727
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3506,7 +3508,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4011,6 +4013,7 @@ MonoBehaviour:
   ps: {fileID: 0}
   isPlayer: 0
   audioSource: {fileID: 0}
+  carSound: {fileID: 8300000, guid: cc6d4865d56e36740bd52419f5d2470d, type: 3}
   localForward: {x: 0, y: 0, z: 0}
   spriteAngle: 0
 --- !u!95 &1368338442
@@ -4094,16 +4097,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4406980adfc3c5f40ae6890a3e5d73ab, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 128
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 4
+  MinDistance: 1
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4138,7 +4141,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.727
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5716,7 +5719,7 @@ MonoBehaviour:
   deAccelerationSpeed: 1
   rotationSpeed: 100
   points: 0
-  parts: 0
+  kartMode: 0
   canFinish: 0
   characterController: {fileID: 0}
 --- !u!4 &1863950162
@@ -5942,16 +5945,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4406980adfc3c5f40ae6890a3e5d73ab, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 1
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 4
+  MinDistance: 1
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -5986,7 +5989,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.727
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -6046,6 +6049,7 @@ MonoBehaviour:
   ps: {fileID: 0}
   isPlayer: 0
   audioSource: {fileID: 0}
+  carSound: {fileID: 8300000, guid: cc6d4865d56e36740bd52419f5d2470d, type: 3}
   localForward: {x: 0, y: 0, z: 0}
   spriteAngle: 0
 --- !u!1 &2024632280
