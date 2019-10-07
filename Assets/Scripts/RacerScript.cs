@@ -155,6 +155,15 @@ public class RacerScript : MonoBehaviour {
             GetComponentInChildren<SpriteRenderer>().enabled = false;
             GetComponentInChildren<AudioSource>().enabled = false;
             ps.Play();
+            if(GetComponentInChildren<FaceCamera>().isPlayer){
+                GameManager.instance.LoseGame();
+            }else{
+                GameManager.instance.botsDead++;
+                if(GameManager.instance.botsDead >= 3)
+                {
+                    GameManager.instance.WinGame();
+                }
+            }
         }
     }
 }

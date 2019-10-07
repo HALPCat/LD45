@@ -15,10 +15,14 @@ public class GameManager : MonoBehaviour
     public GameObject difficultyText;
     public Canvas scoreCanvas;
     public TMP_Text scoreText;
+    public Canvas wienerCanvas;
+    public TMP_Text wienerText;
 
     public GameObject[] Bots;
     public GameObject PlayerGO;
     RacerScript playerRacer;
+
+    public int botsDead = 0;
 
     public static GameManager instance = null;
 
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wienerCanvas.enabled = false;
         scoreCanvas.enabled = false;
         Time.timeScale = 0;
         Paused = false;
@@ -105,5 +110,16 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Exit Game called");
+    }
+
+    public void LoseGame()
+    {
+        wienerCanvas.enabled = true;
+        wienerText.text = "You died";
+    }
+
+    public void WinGame()
+    {
+        wienerCanvas.enabled = true;
     }
 }
