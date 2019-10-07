@@ -12,6 +12,12 @@ public class RacerScript : MonoBehaviour {
     public int points;
     public int parts;
 
+    public CharacterController characterController;
+
+    void Start() {
+        characterController = GetComponent<CharacterController>();
+    }
+
     public void Accelerate() {
         if (speed < maxSpeed) {
             speed += accelerationSpeed * Time.deltaTime;
@@ -37,7 +43,23 @@ public class RacerScript : MonoBehaviour {
     public void TurnLeft() {
         transform.Rotate(0, -rotationSpeed*Time.deltaTime, 0);
     }
+
+    public void TurnTowards(Vector3 target)
+    {
+        Vector3 targetDir = target - transform.position;
+        float step = rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
+        Debug.DrawRay(transform.position, newDir, Color.red);
+        transform.rotation = Quaternion.LookRotation(newDir);
+    }
+
     public void Update() {
-        transform.Translate(transform.forward*Time.deltaTime*speed , Space.World);
+        if(characterController != null)
+        {
+            characterController.Move(transform.forward*Time.deltaTime*speed);
+        }
+        else{
+            transform.Translate(transform.forward*Time.deltaTime*speed , Space.World);
+        }
     }
 }

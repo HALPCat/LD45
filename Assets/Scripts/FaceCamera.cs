@@ -33,7 +33,12 @@ public class FaceCamera : MonoBehaviour {
             isPlayer = false;
         }else
         {
-            isPlayer = true;
+            if(GetComponentInParent<PlayerControls>().enabled)
+            {
+                isPlayer = true;
+            }else{
+                isPlayer = false;
+            }
         }
     }
 
