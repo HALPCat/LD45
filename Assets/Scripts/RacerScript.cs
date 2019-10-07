@@ -17,11 +17,18 @@ public class RacerScript : MonoBehaviour {
 
     private int finishLayer;
     private int halfwayLayer;
+    private int playerLayer;
+
+    public bool dead = false;
+
+    public ParticleSystem ps;
 
     void Start() {
         finishLayer = LayerMask.NameToLayer("RaceLineFinish");
         halfwayLayer = LayerMask.NameToLayer("RaceLineHalfway");
+        playerLayer = LayerMask.NameToLayer("Player");
         characterController = GetComponent<CharacterController>();
+        ps = GetComponentInChildren<ParticleSystem>();
     }
 
     public void Accelerate() {
@@ -97,6 +104,27 @@ public class RacerScript : MonoBehaviour {
                 kartMode = true;
                 GetComponentInChildren<Animator>().SetBool("KartMode", true);
             }
+        }
+        if(other.gameObject.layer == playerLayer)
+        {
+            Debug.Log("Collision");
+            if(kartMode)
+            {
+                other.gameObject.GetComponentInParent<RacerScript>().Die();
+            }
+        }
+    }
+
+    public void Die()
+    {
+        if(!dead)
+        {
+            dead = true;
+            speed = 0;
+            maxSpeed = 0;
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+            GetComponentInChildren<AudioSource>().enabled = false;
+            ps.Play();
         }
     }
 }

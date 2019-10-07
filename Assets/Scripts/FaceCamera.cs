@@ -117,7 +117,6 @@ public class FaceCamera : MonoBehaviour {
             audioSource.PlayOneShot(audioSource.clip);
         }else
         {
-            audioSource.volume = .25f;
             audioSource.clip = carSound;
             audioSource.PlayOneShot(carSound);
         }
