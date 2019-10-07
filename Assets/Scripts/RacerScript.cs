@@ -39,6 +39,5 @@ public class RacerScript : MonoBehaviour {
     }
     public void Update() {
         transform.Translate(transform.forward*Time.deltaTime*speed , Space.World);
-        Debug.Log(speed);
     }
 }
