@@ -13,14 +13,32 @@ public class GameManager : MonoBehaviour
     public GameObject exitButton;
     public GameObject dropDown;
     public GameObject difficultyText;
+    public Canvas scoreCanvas;
+    public TMP_Text scoreText;
 
     public GameObject[] Bots;
+    public GameObject PlayerGO;
+    RacerScript playerRacer;
+
+    public static GameManager instance = null;
+
+    void Awake()
+    {
+        if(instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        scoreCanvas.enabled = false;
         Time.timeScale = 0;
         Paused = false;
+        playerRacer = PlayerGO.GetComponent<RacerScript>();
     }
 
     // Update is called once per frame
@@ -30,6 +48,10 @@ public class GameManager : MonoBehaviour
         {
             Paused = !Paused;
             Pause(Paused);
+        }
+        if(scoreCanvas.enabled)
+        {
+            scoreText.text = playerRacer.points + " / 3";
         }
     }
 
@@ -49,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        scoreCanvas.enabled = true;
         startButton.SetActive(false);
         dropDown.SetActive(false);
         difficultyText.SetActive(false);

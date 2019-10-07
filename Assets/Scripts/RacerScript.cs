@@ -11,13 +11,16 @@ public class RacerScript : MonoBehaviour {
     public float rotationSpeed;
     public int points;
     public int parts;
+    public bool canFinish = false;
 
     public CharacterController characterController;
 
-    private int raceLineLayer;
+    private int finishLayer;
+    private int halfwayLayer;
 
     void Start() {
-        raceLineLayer = LayerMask.NameToLayer("RaceLineFinish");
+        finishLayer = LayerMask.NameToLayer("RaceLineFinish");
+        halfwayLayer = LayerMask.NameToLayer("RaceLineHalfway");
         characterController = GetComponent<CharacterController>();
     }
 
@@ -81,9 +84,14 @@ public class RacerScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == raceLineLayer)
+        if(other.gameObject.layer == halfwayLayer)
+        {
+            canFinish = true;
+        }
+        if(other.gameObject.layer == finishLayer & canFinish)
         {
             points++;
+            canFinish = false;
         }
     }
 }

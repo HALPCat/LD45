@@ -61,7 +61,9 @@ public class FaceCamera : MonoBehaviour {
         animator.SetFloat("Horizontal", localForward.x);
         animator.SetFloat("Vertical", localForward.z);
 
-        if(animator.GetFloat("Horizontal") >= 0)
+        Debug.DrawRay(transform.position, localForward, Color.cyan);
+
+        if(localForward.x >= 0)
         {
             spriteRenderer.flipX = true;
         }else{
